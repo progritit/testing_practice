@@ -1,10 +1,27 @@
-# 02template_build_quality_security_testing
+# Testing Practice
 
-A reusable **Vanilla JavaScript starter template** created during my progression through The Odin Project.
+A JavaScript testing project completed as part of **The Odin Project — Full Stack JavaScript path**.
 
-This repository preserves the previous build, quality, and security architecture and adds the next milestone: **automated testing with Jest and Babel support for ES modules**.
+This project builds on my `02template_build_quality_security_testing` starter and applies the testing layer in practice using **Jest**, **Babel**, and a basic **Test-Driven Development (TDD)** workflow.
 
-## Architecture
+## Project goals
+
+The exercises focus on writing tests for small, isolated JavaScript functions and then implementing the code required to make those tests pass.
+
+Functions implemented:
+
+* `capitalize`
+* `reverseString`
+* `calculator`
+
+  * `add`
+  * `subtract`
+  * `multiply`
+  * `divide`
+* `caesarCipher`
+* `analyzeArray`
+
+## Development architecture
 
 ```text
 Vanilla JavaScript
@@ -24,52 +41,104 @@ Vanilla JavaScript
     └── Babel
 ```
 
-## Tooling
+Babel allows the project to keep using ES module syntax such as:
 
-* **npm** — dependency and script management
-* **Webpack** — development server and production bundling
-* **ESLint** — static code analysis
-* **Prettier** — consistent code formatting
-* **Semgrep** — static security analysis
-* **Jest** — automated JavaScript testing
-* **Babel** — enables the Jest environment to work with the project's ES module syntax
+```javascript
+import { test, expect } from "@jest/globals";
+import { capitalize } from "../src/capitalize.js";
+```
 
-## Testing workflow
+while Jest executes the tests in the Node environment.
 
-The template supports the basic TDD cycle:
+## TDD workflow
+
+The exercises are approached using the basic TDD cycle:
 
 ```text
-Write test
-   ↓
+Write a test
+     ↓
 RED
-   ↓
-Implement
-   ↓
+     ↓
+Write the minimum implementation
+     ↓
 GREEN
-   ↓
+     ↓
 Refactor
 ```
 
-Run the test suite with:
+The goal is not only to verify that the final functions work, but also to practice defining expected behavior before implementation.
+
+## Project structure
+
+```text
+src/
+├── capitalize.js
+├── reverseString.js
+├── calculator.js
+├── caesarCipher.js
+└── analyzeArray.js
+
+tests/
+├── capitalize.test.js
+├── reverseString.test.js
+├── calculator.test.js
+├── caesarCipher.test.js
+└── analyzeArray.test.js
+```
+
+## Installation
+
+After cloning the repository:
+
+```bash
+npm install
+```
+
+or, when using the included lockfile:
+
+```bash
+npm ci
+```
+
+## Testing
+
+Run all tests:
 
 ```bash
 npm test
 ```
 
-For continuous feedback while practicing TDD:
+Run Jest in watch mode while practicing TDD:
 
 ```bash
 npm run test:watch
 ```
 
-## Purpose
+## Quality checks
 
-This repository is the second snapshot of my evolving JavaScript development architecture.
+The project inherits the development tooling from the testing template, including linting, formatting, security scanning, testing, and production build checks.
 
-Each numbered template adds only tooling or concepts that I have reached and understood through the curriculum.
+Run the complete project verification with:
 
-## Milestone
+```bash
+npm run check:all
+```
 
-**02 — Build → Quality → Security → Testing**
+## Key concepts practiced
 
-Compared with milestone 01, this template adds only the testing layer while preserving the previous architecture.
+* writing automated tests with Jest;
+* using `test`, `expect`, and Jest matchers;
+* testing primitive values with `toBe`;
+* testing objects with `toEqual`;
+* grouping related tests;
+* testing public behavior rather than internal helper implementation;
+* using Babel to support ES modules in the Jest environment;
+* working through the **Red → Green → Refactor** cycle.
+
+## Learning milestone
+
+This project represents the transition from **configuring a testing environment** to **actually using automated tests to guide implementation**.
+
+The previous template introduced the testing architecture.
+
+This project puts that architecture into practice.
